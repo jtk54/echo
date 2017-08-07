@@ -71,7 +71,7 @@ allprojects {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
         exclude group: 'org.slf4j', module: 'slf4j-simple'
         resolutionStrategy {
-            force 'com.google.guava:guava:15.0'
+            force 'com.google.guava:guava:20.0'
         }
     }
 }
