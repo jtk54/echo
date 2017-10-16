@@ -71,10 +71,12 @@ public class PubsubMessageHandler {
     String messageKey = makeKey(description.getMessagePayload(), description.getPubsubSystem(), description.getSubscriptionName());
 
     if (!acquireMessageLock(messageKey, identifier, description.getAckDeadlineMillis())) {
+      System.out.println("nacking");
       acknowledger.nack();
       return;
     }
 
+    System.out.println("acking");
     acknowledger.ack();
     processEvent(description);
     setMessageHandled(messageKey, identifier, description.getRetentionDeadlineMillis());
@@ -102,7 +104,7 @@ public class PubsubMessageHandler {
 
 
   private void processEvent(MessageDescription description) {
-    log.debug("Processed Pubsub event with payload {}", description.getMessagePayload());
+    log.info("Processed Pubsub event with payload {}", description.getMessagePayload());
 
     Event event = new Event();
     Map<String, Object> content = new HashMap<>();

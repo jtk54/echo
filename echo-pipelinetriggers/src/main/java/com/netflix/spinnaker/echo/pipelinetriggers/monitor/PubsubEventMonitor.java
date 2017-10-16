@@ -121,6 +121,15 @@ public class PubsubEventMonitor extends TriggerMonitor {
     Predicate<Artifact> expectedArtifactMatch = a -> trigger.getExpectedArtifacts()
         .stream()
         .anyMatch(e -> e.matches(a));
+
+    for (Artifact messageArtifact : messageArtifacts) {
+      System.out.printf("message artifact: %s\n", messageArtifact.toString());
+    }
+
+    for (ExpectedArtifact e : trigger.getExpectedArtifacts()) {
+      System.out.printf("expected artifact: %s\n", e.toString());
+    }
+
     return messageArtifacts.stream().anyMatch(expectedArtifactMatch);
   }
 

@@ -127,7 +127,7 @@ public class GooglePubsubSubscriber implements PubsubSubscriber {
     @Override
     public void receiveMessage(PubsubMessage message, AckReplyConsumer consumer) {
       String messagePayload = message.getData().toStringUtf8();
-      log.debug("Received message with payload: {}", messagePayload);
+      log.info("Received message with payload: {}", messagePayload);
 
       MessageDescription description = MessageDescription.builder()
           .subscriptionName(subscriptionName)
