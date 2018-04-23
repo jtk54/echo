@@ -134,6 +134,6 @@ public class PubsubMessageHandler {
 
     event.setContent(content);
     event.setDetails(details);
-    pubsubEventMonitor.processEvent(event);
+//    pubsubEventMonitor.processEvent(event);
   }
 }

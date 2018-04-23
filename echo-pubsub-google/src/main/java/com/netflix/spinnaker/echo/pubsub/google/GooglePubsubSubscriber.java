@@ -39,11 +39,14 @@ import com.netflix.spinnaker.kork.artifacts.model.Artifact;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.PropertyAccessor;
+import org.springframework.beans.PropertyAccessorFactory;
 import org.threeten.bp.Duration;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,6 +117,10 @@ public class GooglePubsubSubscriber implements PubsubSubscriber {
         log.error("Could not import default application credentials: {}", e.getMessage());
       }
     }
+
+//    PropertyAccessor accessor = PropertyAccessorFactory.forDirectFieldAccess(credentials);
+//    List<String> scopes = Arrays.asList("https://www.googleapis.com/auth/pubsub", "https://www.googleapis.com/auth/cloud-platform");
+//    accessor.setPropertyValue("serviceAccountScopes", scopes);
 
     subscriber = Subscriber
         .defaultBuilder(SubscriptionName.create(project, subscriptionName), messageReceiver)
