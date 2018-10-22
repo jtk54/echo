@@ -30,7 +30,7 @@ import java.util.Map;
 @JsonDeserialize(builder = Pipeline.PipelineBuilder.class)
 @Builder
 @Wither
-@ToString(of = {"application", "name", "id"}, includeFieldNames = false)
+@ToString(includeFieldNames = false)
 @Value
 public class Pipeline {
   @JsonProperty
